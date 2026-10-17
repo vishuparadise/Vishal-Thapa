@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
-  <title id="title">Vishu Paradise play-V logo</title>
-  <desc id="desc">A lime green V-shaped play symbol on a transparent background.</desc>
-  <!-- Transparent canvas. The single continuous mark combines a V with a right-facing play silhouette. -->
-  <path d="M104 76h112l88 170 88-170h112L304 436h-1L104 76Z" fill="#B8F23F"/>
-  <path d="M304 436 504 76h-54L304 345 158 76h-54l200 360h1Z" fill="#171916" opacity=".12"/>
-</svg>
