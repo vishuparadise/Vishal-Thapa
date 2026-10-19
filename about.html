@@ -121,10 +121,25 @@ nav a:hover,nav a[aria-current=page]{border-color:var(--lime)}
 .head-cta{padding:.55rem 1rem}
 @media(max-width:900px){
  .menu-btn{display:block}.head-cta{display:none}
- nav{position:absolute;left:0;right:0;top:100%;background:var(--ink);border-bottom:3px solid var(--lime);display:none}
- nav.open{display:block}nav ul{flex-direction:column;gap:0;padding:.5rem 4%}
- nav a{display:block;padding:.9rem 0;font-size:1.15rem}}
-/* hero */
+.site-head nav {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  background: var(--ink);
+  border-bottom: 3px solid var(--lime);
+  display: none;
+}
+
+.site-head nav.open { display: block; }
+
+.site-head nav ul {
+  flex-direction: column;
+  gap: 0;
+  padding: .5rem 4%;
+}
+.site-head nav a { display: block; padding: .9rem 0; font-size: 1.15rem; }
+ /* hero */
 .hero{background:var(--lime);overflow:hidden;padding-top:clamp(2.5rem,6vw,4.5rem);padding-bottom:clamp(2.5rem,6vw,4rem)}
 .hero .bigv{position:absolute;right:-6%;top:-8%;width:min(62vw,640px);opacity:.16;pointer-events:none}
 .hero .wrap{position:relative}
