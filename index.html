@@ -14,8 +14,8 @@
 <meta property="og:site_name" content="Vishu Paradise">
 <meta property="og:title" content="Vishu Paradise | Vishal Thapa — Real Life. Real Fun. Real Vishu.">
 <meta property="og:description" content="Vlogs, fun challenges, relatable moments, singing and fitness from creator Vishal Thapa.">
-<meta property="og:url" content="https://YOUR-DOMAIN.com/">
-<meta property="og:image" content="https://i.ytimg.com/vi/XZSL_EtmIV0/maxresdefault.jpg">
+<meta property="og:url" content="https://vishuparadise.site/">
+<meta property="og:image" content="https://i.ytimg.com/vi/zqm9WnP3FzE/maxresdefault.jpg">
 <meta property="og:locale" content="en_IN">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Vishu Paradise | Vishal Thapa">
@@ -358,8 +358,8 @@ footer .links{display:flex;gap:1.2rem}footer .links a{font-weight:700}
    <div><a class="brand" href="#top"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+CiAgPHRpdGxlIGlkPSJ0aXRsZSI+VmlzaHUgUGFyYWRpc2UgcGxheS1WIGxvZ288L3RpdGxlPgogIDxkZXNjIGlkPSJkZXNjIj5BIGxpbWUgZ3JlZW4gVi1zaGFwZWQgcGxheSBzeW1ib2wgb24gYSB0cmFuc3BhcmVudCBiYWNrZ3JvdW5kLjwvZGVzYz4KICA8IS0tIFRyYW5zcGFyZW50IGNhbnZhcy4gVGhlIHNpbmdsZSBjb250aW51b3VzIG1hcmsgY29tYmluZXMgYSBWIHdpdGggYSByaWdodC1mYWNpbmcgcGxheSBzaWxob3VldHRlLiAtLT4KICA8cGF0aCBkPSJNMTA0IDc2aDExMmw4OCAxNzAgODgtMTcwaDExMkwzMDQgNDM2aC0xTDEwNCA3NloiIGZpbGw9IiNCOEYyM0YiLz4KICA8cGF0aCBkPSJNMzA0IDQzNiA1MDQgNzZoLTU0TDMwNCAzNDUgMTU4IDc2aC01NGwyMDAgMzYwaDFaIiBmaWxsPSIjMTcxOTE2IiBvcGFjaXR5PSIuMTIiLz4KPC9zdmc+DQo=" width="34" height="34" alt="">Vishu Paradise</a>
     <p style="margin:.4rem 0 0">Real Life. Real Fun. Real Vishu.</p></div>
    <div class="links"><a data-link="youtube" href="https://youtube.com/@vishu-paradise" target="_blank" rel="noopener noreferrer">YouTube</a>
-    <a data-link="instagram" href="https://www.instagram.com/vishu.paradise/" target="_blank" rel="noopener noreferrer">Instagram</a></div>
-  </div>
+<a data-link="instagram" href="https://www.instagram.com/vishu.paradise/" target="_blank" rel="noopener noreferrer">Instagram</a>
+<a data-link="linkedin" href="https://www.linkedin.com/in/vishal-thapa-94765a428/" target="_blank" rel="noopener noreferrer" aria-label="Vishal Thapa on LinkedIn">LinkedIn</a></div>  </div>
   <p class="copy">© <span id="year">2026</span> Vishu Paradise · Vishal Thapa</p>
  </div>
 </footer>
@@ -416,6 +416,7 @@ if (SITE.photo) $("#photo").innerHTML = `<img src="${SITE.photo}" alt="${SITE.ph
 
 // Video facade: thumbnail + link fallback; iframe loads on click (lazy, privacy-friendly)
 const player = $("#player"), vid = SITE.videoId;
+$("#video-fallback").href = `https://youtu.be/${vid}`;
 player.innerHTML = `<button type="button" aria-label="Play latest Vishu Paradise video" style="background-image:url(https://i.ytimg.com/vi/${vid}/hqdefault.jpg)">
  <svg class="play" viewBox="0 0 512 512" aria-hidden="true"><circle cx="256" cy="256" r="250" fill="#171916"/><path d="M190 150l180 106-180 106z" fill="#B8F23F"/></svg></button>`;
 player.querySelector("button").onclick = () => {
