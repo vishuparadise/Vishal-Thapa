@@ -443,8 +443,7 @@ $("#video-fallback").href = `https://youtu.be/${vid}`;
 player.innerHTML = `<button type="button" aria-label="Play latest Vishu Paradise video" style="background-image:url(https://i.ytimg.com/vi/${vid}/hqdefault.jpg)">
  <svg class="play" viewBox="0 0 512 512" aria-hidden="true"><circle cx="256" cy="256" r="250" fill="#171916"/><path d="M190 150l180 106-180 106z" fill="#B8F23F"/></svg></button>`;
 player.querySelector("button").onclick = () => {
-  player.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${vid}?autoplay=1&rel=0" title="Vishu Paradise latest video" loading="lazy" allow="accelerometer; autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
-};
+window.open(`https://www.youtube.com/watch?v=${vid}`, "_blank", "noopener,noreferrer");};
 
 // Categories (equal prominence)
 const I = {
