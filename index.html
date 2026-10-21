@@ -248,6 +248,172 @@ footer .links svg{width:20px;height:20px;flex:none}
     transition: none;
   }
 }
+  
+/* ===== RESPONSIVE LAYOUT FIX ===== */
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.wrap {
+  width: min(1160px, calc(100% - 32px));
+  margin-inline: auto;
+}
+
+.bar,
+.hero-grid,
+.about-grid,
+.contact-grid,
+.stack {
+  min-width: 0;
+}
+
+.hero-grid {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.hero-grid > *,
+.about-grid > *,
+.contact-grid > * {
+  min-width: 0;
+}
+
+.hero h1 {
+  overflow-wrap: anywhere;
+  font-size: clamp(2.5rem, 6vw, 7.5rem);
+}
+
+.hero .intro {
+  overflow-wrap: anywhere;
+}
+
+.photo {
+  width: 100%;
+  max-width: 340px;
+  justify-self: end;
+  aspect-ratio: 5 / 4;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.cards {
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, 250px), 1fr)
+  );
+}
+
+.card,
+.instagram-card,
+.instagram-card .instagram-media {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.social-big > *,
+form > * {
+  min-width: 0;
+}
+
+@media (max-width: 860px) {
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 10vw, 4.5rem);
+  }
+
+  .photo {
+    justify-self: center;
+    max-width: 340px;
+  }
+}
+
+@media (max-width: 600px) {
+  .wrap {
+    width: calc(100% - 28px);
+  }
+
+  .bar {
+    gap: 0.5rem;
+    min-height: 64px;
+  }
+
+  .brand {
+    min-width: 0;
+    gap: 0.4rem;
+    font-size: clamp(1rem, 4.5vw, 1.25rem);
+  }
+
+  .brand img {
+    flex: 0 0 30px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .menu-btn {
+    flex-shrink: 0;
+  }
+
+  nav ul {
+    padding-inline: 14px;
+  }
+
+  .hero {
+    padding-top: 2.5rem;
+  }
+
+  .hero .bigv {
+    width: 90vw;
+    right: -25%;
+  }
+
+  .hero .tag {
+    max-width: 100%;
+    font-size: clamp(1rem, 4.5vw, 1.35rem);
+    overflow-wrap: anywhere;
+  }
+
+  .cta-row {
+    align-items: stretch;
+  }
+
+  .cta-row .btn {
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .cats,
+  .social-big,
+  .contact-grid,
+  .about-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .cat:last-child {
+    grid-column: auto;
+  }
+
+  footer .links {
+    flex-wrap: wrap;
+  }
+}
+
+/* ===== END RESPONSIVE LAYOUT FIX ===== */
+           
 </style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MW58EEDZFX"></script>
