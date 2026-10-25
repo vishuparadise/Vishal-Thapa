@@ -213,6 +213,15 @@ dialog[open]{animation:dlg .25s ease}
 .instagram-icon {
   color: #C13584;
 }
+  .gallery {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 600px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}
 </style>
 </head>
 <body>
