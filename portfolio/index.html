@@ -198,6 +198,21 @@ dialog[open]{animation:dlg .25s ease}
 .dlg-foot{padding:.9rem 1.1rem 1.2rem}
 .dlg-foot a{font-weight:700;text-underline-offset:4px}
 @media(prefers-reduced-motion:reduce){dialog[open]{animation:none!important}.thumb img{transition:none!important}}
+  .social-card-icon {
+  height: 170px;
+  display: grid;
+  place-items: center;
+  background: var(--c2);
+}
+
+.social-card-icon svg {
+  width: 68px;
+  height: 68px;
+}
+
+.instagram-icon {
+  color: #C13584;
+}
 </style>
 </head>
 <body>
@@ -264,20 +279,39 @@ dialog[open]{animation:dlg .25s ease}
 </div>
 </article>
 <article class="card item reveal" data-cat="Social Media Content">
+  <div class="social-card-icon youtube-icon" aria-hidden="true">
+    <svg viewBox="0 0 48 48">
+      <rect x="4" y="10" width="40" height="28" rx="8" fill="#FF0000"/>
+      <path d="M20 17v14l12-7z" fill="#fff"/>
+    </svg>
+  </div>
+  <span class="cat-label">Social Media Content</span>
   <h2>Vishu Paradise on YouTube</h2>
-  <p>Visit my YouTube channel for my digital marketing content.</p>
-  <a href="https://youtube.com/@vishu-paradise"
-     target="_blank" rel="nofollow noopener noreferrer">
-    Visit YouTube
-  </a>
+  <p>Digital marketing videos, tips and channel updates.</p>
+  <div class="links">
+    <a href="https://youtube.com/@vishu-paradise"
+       target="_blank" rel="nofollow noopener noreferrer">Visit YouTube</a>
+  </div>
 </article>
 
-<article class="card item reveal" data-cat="Social Media Content">  <h2>Vishal Thapa on Instagram</h2>
-  <p>Visit my Instagram profile.</p>
-  <a href="https://instagram.com/iam.kenovish"
-     target="_blank" rel="nofollow noopener noreferrer">
-    Visit Instagram
-  </a>
+
+<article class="card item reveal" data-cat="Social Media Content">
+  <div class="social-card-icon instagram-icon" aria-hidden="true">
+    <svg viewBox="0 0 48 48">
+      <rect x="7" y="7" width="34" height="34" rx="10"
+            fill="none" stroke="currentColor" stroke-width="4"/>
+      <circle cx="24" cy="24" r="8"
+              fill="none" stroke="currentColor" stroke-width="4"/>
+      <circle cx="35" cy="13" r="2.5" fill="currentColor"/>
+    </svg>
+  </div>
+  <span class="cat-label">Social Media Content</span>
+  <h2>Vishal Thapa on Instagram</h2>
+  <p>Follow my Instagram profile for updates and digital marketing content.</p>
+  <div class="links">
+    <a href="https://instagram.com/iam.kenovish"
+       target="_blank" rel="nofollow noopener noreferrer">Visit Instagram</a>
+  </div>
 </article>
 </div>
 <p class="empty" id="empty" hidden>No samples to show in this category yet.</p>
