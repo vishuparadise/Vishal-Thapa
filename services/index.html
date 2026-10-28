@@ -214,6 +214,27 @@ footer{background:var(--dark);color:var(--c4);padding:2.5rem 0}
  @keyframes travelY{0%{top:0}45%,55%{top:50%}100%{top:100%}}
 }
 @media(prefers-reduced-motion:reduce){.js .svc.in .icon{animation:none!important}.track::after{left:50%}}
+  .category-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.category-links a {
+  padding: 10px 16px;
+  border: 1px solid var(--c1);
+  border-radius: 999px;
+  background: var(--c3);
+  color: var(--ink);
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.category-links a:hover {
+  background: var(--c2);
+  transform: translateY(-2px);
+}
 </style>
 </head>
 <body>
@@ -245,6 +266,14 @@ footer{background:var(--dark);color:var(--c4);padding:2.5rem 0}
 <p class="big">I provide SEO, Google Ads, social media marketing, website creation, and Google Business Profile optimization for businesses worldwide.</p>
 <p class="lead">I'm Vishal Thapa, also known as Vishu, a freelance digital marketer working independently as Vishu Paradise. Choose a service below to ask about it on WhatsApp.</p>
 <a class="btn btn-dark" href="https://wa.me/918923101603?text=Hi%20Vishal%2C%20I%E2%80%99m%20interested%20in%20your%20digital%20marketing%20services.%20Please%20share%20more%20details." target="_blank" rel="noopener">Enquire Now</a>
+<nav class="category-links" id="service-categories" aria-label="Choose a service category">
+  <a href="#cat-0">SEO</a>
+  <a href="#cat-1">Google Ads &amp; Paid Advertising</a>
+  <a href="#cat-2">Social Media Marketing</a>
+  <a href="#cat-3">Website &amp; Landing Pages</a>
+  <a href="#cat-4">Content &amp; Email Marketing</a>
+  <a href="#cat-5">Analytics &amp; Reporting</a>
+</nav>
 </div>
 </section>
 <section class="cat alt" id="cat-0" aria-labelledby="h-0">
