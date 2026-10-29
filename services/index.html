@@ -235,6 +235,29 @@ footer{background:var(--dark);color:var(--c4);padding:2.5rem 0}
   background: var(--c2);
   transform: translateY(-2px);
 }
+  @media (max-width: 960px) {
+  .category-links {
+    position: static !important;
+    inset: auto !important;
+    display: flex !important;
+    flex-wrap: nowrap;
+    gap: 8px;
+    max-width: 100%;
+    overflow-x: auto;
+    padding: 8px 0 14px;
+    margin-top: 18px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .category-links a {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+}
+
+.cat {
+  scroll-margin-top: 84px;
+}
 </style>
 </head>
 <body>
