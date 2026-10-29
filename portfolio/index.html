@@ -356,6 +356,21 @@ dialog[open]{animation:dlg .25s ease}
     animation: none;
   }
 }
+  @media (min-width: 961px) {
+  header .bar {
+    position: relative;
+  }
+
+  header .bar > nav#nav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  header .bar > nav#nav ul {
+    justify-content: center;
+  }
+}
 </style>
 </head>
 <body>
