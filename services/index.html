@@ -548,10 +548,7 @@ footer{background:var(--dark);color:var(--c4);padding:2.5rem 0}
           </div>
         </fieldset>
 
-        <div class="full">
-          <label for="msg">How can I help?</label>
-          <textarea id="msg" name="Message" required></textarea>
-        </div>
+       
 
         <!-- Replace this consent line with your existing privacy/consent wording and link if you already have one. -->
         <div class="full">
@@ -625,9 +622,8 @@ if ('IntersectionObserver' in window) {
   items.forEach(function (el) { el.classList.add('in'); });
 }
   const inquiryForm = document.getElementById('inquiry-form');
-const formStatus = document.getElementById('form-status');
 
-if (inquiryForm && formStatus) {
+if (inquiryForm) {
   inquiryForm.addEventListener('submit', async function (event) {
     event.preventDefault();
 
@@ -636,7 +632,6 @@ if (inquiryForm && formStatus) {
 
     submitButton.disabled = true;
     submitButton.textContent = 'Sending...';
-    formStatus.textContent = '';
 
     try {
       const response = await fetch(inquiryForm.action, {
@@ -651,12 +646,11 @@ if (inquiryForm && formStatus) {
         throw new Error('Submission failed');
       }
 
-      inquiryForm.hidden = true;
-      formStatus.textContent =
-        'Thank you! Your message has been sent. I’ll get back to you soon.';
+      inquiryForm.reset();
+      alert('Thank you! Your message has been sent. I’ll get back to you soon.');
     } catch (error) {
-      formStatus.textContent =
-        'Message send nahi ho paya. Please try again.';
+      alert('Message send nahi ho paya. Please try again.');
+    } finally {
       submitButton.disabled = false;
       submitButton.textContent = originalText;
     }
