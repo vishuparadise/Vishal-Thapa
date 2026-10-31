@@ -336,6 +336,17 @@ footer{background:var(--dark);color:var(--c4);padding:2.5rem 0}
     transform: translateY(0);
   }
 }
+  .form-status {
+  margin-top: 1rem;
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  background: var(--c3);
+  font-weight: 500;
+}
+
+.form-status:empty {
+  display: none;
+}
 </style>
 </head>
 <body>
@@ -468,7 +479,7 @@ footer{background:var(--dark);color:var(--c4);padding:2.5rem 0}
           <p>Created and set up the gym's Google Business Profile so local customers can find it on Google.</p>
           <!-- Add real performance screenshots inside this box later, then remove the placeholder text. -->
           <div class="links">
-            <a href="https://share.google/jH13q81eDbUBUHAzq" target="_blank" rel="noopener">View Google profile</a>
+            <a href="https://share.google/jH13q81eDbUBUHAzq" target="_blank" rel="nofollow noopener noreferrer">View Google profile</a>
             <a href="projects/">View project</a>
           </div>
         </article>
@@ -521,8 +532,10 @@ footer{background:var(--dark);color:var(--c4);padding:2.5rem 0}
       </div>
 
       <!-- IMPORTANT: replace action and hidden fields with your existing, working submission setup (FormSubmit per your current site). Credentials are intentionally not included. -->
-      <form class="reveal" action="https://formsubmit.co/ajax/vishalthapa8923@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="New inquiry from vishuparadise.site">
+<form id="inquiry-form" class="reveal"
+      action="https://formsubmit.co/ajax/vishalthapa8923@gmail.com"
+      method="POST">
+  <input type="hidden" name="_subject" value="New inquiry from vishuparadise.site">
         <input type="hidden" name="_captcha" value="true">
         <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
 
@@ -594,6 +607,7 @@ footer{background:var(--dark);color:var(--c4);padding:2.5rem 0}
 
         <div class="full"><button class="btn btn-dark" type="submit">Send Inquiry</button></div>
       </form>
+      <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
     </div>
   </section>
 </main>
@@ -658,6 +672,44 @@ if ('IntersectionObserver' in window) {
   items.forEach(function (el) { io.observe(el); });
 } else {
   items.forEach(function (el) { el.classList.add('in'); });
+}
+  const inquiryForm = document.getElementById('inquiry-form');
+const formStatus = document.getElementById('form-status');
+
+if (inquiryForm && formStatus) {
+  inquiryForm.addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    const submitButton = inquiryForm.querySelector('[type="submit"]');
+    const originalText = submitButton.textContent;
+
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
+    formStatus.textContent = '';
+
+    try {
+      const response = await fetch(inquiryForm.action, {
+        method: 'POST',
+        body: new FormData(inquiryForm),
+        headers: { Accept: 'application/json' }
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || String(result.success).toLowerCase() !== 'true') {
+        throw new Error('Submission failed');
+      }
+
+      inquiryForm.hidden = true;
+      formStatus.textContent =
+        'Thank you! Your message has been sent. I’ll get back to you soon.';
+    } catch (error) {
+      formStatus.textContent =
+        'Message send nahi ho paya. Please try again.';
+      submitButton.disabled = false;
+      submitButton.textContent = originalText;
+    }
+  });
 }
 </script>
 </body>
