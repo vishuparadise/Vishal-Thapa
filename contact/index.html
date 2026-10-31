@@ -170,6 +170,17 @@ input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:#7a1f1a;bo
 .btn[disabled]{opacity:.65;cursor:progress}
 .btn-wa{background:var(--c4);color:var(--ink);border-color:var(--c4)}
 .btn-wa:hover{background:var(--c1);border-color:var(--c1);transform:translateY(-2px)}
+.form-status {
+  margin-top: 1rem;
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  background: var(--c3);
+  font-weight: 500;
+}
+
+.form-status:empty {
+  display: none;
+}
 </style>
 </head>
 <body>
@@ -212,8 +223,10 @@ input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:#7a1f1a;bo
 <!-- IMPORTANT: replace action and hidden fields with your existing, working submission setup. Credentials are intentionally not included.
      The script below sends the form with fetch() and expects a JSON-capable endpoint (FormSubmit's /ajax/ variant works this way).
      If your endpoint is a plain redirect-style form post, tell me and I'll adjust the script. -->
-<form id="inquiry-form" class="reveal" action="https://formsubmit.co/ajax/vishalthapa8923@gmail.com" method="POST" novalidate>
-<input type="hidden" name="_subject" value="New inquiry from vishuparadise.site (Contact page)">
+<form id="inquiry-form" class="reveal"
+      action="https://formsubmit.co/ajax/vishalthapa8923@gmail.com"
+      method="POST">
+  <input type="hidden" name="_subject" value="New inquiry from vishuparadise.site (Contact page)">
 <input type="hidden" name="_captcha" value="true">
 <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
 
@@ -298,6 +311,7 @@ input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:#7a1f1a;bo
 <button class="btn btn-dark" type="submit" id="send">Send Inquiry</button>
 </div>
 </form>
+  <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
 
 </div>
 </section>
@@ -306,7 +320,7 @@ input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:#7a1f1a;bo
   <div class="wrap foot">
     <a href="/" aria-label="Vishu Paradise home"><img src="/favicon.png" alt="Vishu Paradise logo" width="43" height="40"></a>
     <!-- Replace each # with your existing profile URL. -->
-    <a class="btn btn-wa" href="https://wa.me/918923101603?text=Hi%20Vishal%2C%20I%E2%80%99d%20like%20to%20discuss%20a%20digital%20marketing%20project.%20Please%20share%20more%20details." target="_blank" rel="noopener">Chat on WhatsApp</a>
+    <a class="btn btn-wa" href="https://wa.me/918923101603?text=Hi%20Vishal%2C%20I%E2%80%99d%20like%20to%20discuss%20a%20digital%20marketing%20project.%20Please%20share%20more%20details." target="_blank" rel="nofollow noopener noreferrer">Chat on WhatsApp</a>
     <ul class="social-links" aria-label="Social links">
   <li>
     <a href="https://www.linkedin.com/in/vishal-thapa-94765a428/"
@@ -413,6 +427,44 @@ if ('IntersectionObserver' in window) {
     if (t.name === 'Gender') document.getElementById('err-gender').hidden = true;
   });
 })();
+  const inquiryForm = document.getElementById('inquiry-form');
+const formStatus = document.getElementById('form-status');
+
+if (inquiryForm && formStatus) {
+  inquiryForm.addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    const submitButton = inquiryForm.querySelector('[type="submit"]');
+    const originalText = submitButton.textContent;
+
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
+    formStatus.textContent = '';
+
+    try {
+      const response = await fetch(inquiryForm.action, {
+        method: 'POST',
+        body: new FormData(inquiryForm),
+        headers: { Accept: 'application/json' }
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || String(result.success).toLowerCase() !== 'true') {
+        throw new Error('Submission failed');
+      }
+
+      inquiryForm.hidden = true;
+      formStatus.textContent =
+        'Thank you! Your message has been sent. I’ll get back to you soon.';
+    } catch (error) {
+      formStatus.textContent =
+        'Message send nahi ho paya. Please try again.';
+      submitButton.disabled = false;
+      submitButton.textContent = originalText;
+    }
+  });
+}
 </script>
 </body>
 </html>
