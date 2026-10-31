@@ -258,6 +258,17 @@ footer{background:var(--dark);color:var(--c4);padding:2.5rem 0}
 .cat {
   scroll-margin-top: 84px;
 }
+  .form-status {
+  margin-top: 1rem;
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  background: var(--c3);
+  font-weight: 500;
+}
+
+.form-status:empty {
+  display: none;
+}
 </style>
 </head>
 <body>
@@ -472,8 +483,10 @@ footer{background:var(--dark);color:var(--c4);padding:2.5rem 0}
 <div class="wrap">
 <div class="reveal"><h2>Send an Inquiry</h2><p class="lead">Tell me about your business or brand and what you'd like to achieve.</p></div>
 <!-- IMPORTANT: use the same existing, working submission setup as the homepage. Credentials are intentionally not included. -->
-<form class="reveal" action="https://formsubmit.co/ajax/vishalthapa8923@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="New inquiry from vishuparadise.site">
+<form id="inquiry-form" class="reveal"
+      action="https://formsubmit.co/ajax/vishalthapa8923@gmail.com"
+      method="POST">
+  <input type="hidden" name="_subject" value="New inquiry from vishuparadise.site">
         <input type="hidden" name="_captcha" value="true">
         <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
 
@@ -547,6 +560,7 @@ footer{background:var(--dark);color:var(--c4);padding:2.5rem 0}
 
         <div class="full"><button class="btn btn-dark" type="submit">Send Inquiry</button></div>
       </form>
+  <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
 </div>
 </section>
 </main>
@@ -609,6 +623,44 @@ if ('IntersectionObserver' in window) {
   items.forEach(function (el) { io.observe(el); });
 } else {
   items.forEach(function (el) { el.classList.add('in'); });
+}
+  const inquiryForm = document.getElementById('inquiry-form');
+const formStatus = document.getElementById('form-status');
+
+if (inquiryForm && formStatus) {
+  inquiryForm.addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    const submitButton = inquiryForm.querySelector('[type="submit"]');
+    const originalText = submitButton.textContent;
+
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
+    formStatus.textContent = '';
+
+    try {
+      const response = await fetch(inquiryForm.action, {
+        method: 'POST',
+        body: new FormData(inquiryForm),
+        headers: { Accept: 'application/json' }
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || String(result.success).toLowerCase() !== 'true') {
+        throw new Error('Submission failed');
+      }
+
+      inquiryForm.hidden = true;
+      formStatus.textContent =
+        'Thank you! Your message has been sent. I’ll get back to you soon.';
+    } catch (error) {
+      formStatus.textContent =
+        'Message send nahi ho paya. Please try again.';
+      submitButton.disabled = false;
+      submitButton.textContent = originalText;
+    }
+  });
 }
 </script>
 </body>
