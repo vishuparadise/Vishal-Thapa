@@ -422,17 +422,22 @@ new FormData(form).forEach(function (value, key) {
     data[key] = value;
   }
 });
+data.access_key = 'ec74c138-0e2c-4887-b6a8-04411b290fdb';
 
-  fetch('https://web3forms.com', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    },
-    body: JSON.stringify(data)
-  })
-
+fetch('https://api.web3forms.com/submit', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+  },
+  body: JSON.stringify(data)
+})
+  .then(function (r) {
     if (!r.ok) throw new Error('Submission failed');
+    return r.json();
+  })
+  .then(function (res) {
+    if (!res.success) throw new Error(res.message || 'Submission failed');
     form.hidden = true;
     success.hidden = false;
     success.focus();
@@ -444,14 +449,3 @@ new FormData(form).forEach(function (value, key) {
     send.disabled = false;
     send.textContent = 'Send Inquiry';
   });
-  });
-
-  // Clear an error as soon as the visitor corrects the field.
-  form.addEventListener('input', function (e) {
-    var t = e.target; if (t.getAttribute('aria-invalid')) { t.removeAttribute('aria-invalid'); var p = document.getElementById('err-' + t.id); if (p) p.hidden = true; }
-    if (t.name === 'Gender') document.getElementById('err-gender').hidden = true;
-  });
-})();
-</script>
-</body>
-</html>
