@@ -423,15 +423,15 @@ new FormData(form).forEach(function (value, key) {
   }
 });
 
-fetch(form.action, {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json'
-  },
-  body: JSON.stringify(data)
-})
-  .then(function (r) {
+    fetch('https://web3forms.com', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+
     if (!r.ok) throw new Error('Submission failed');
     form.hidden = true;
     success.hidden = false;
